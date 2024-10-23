@@ -8,7 +8,7 @@ class StaffRoute
     public function map(Registrar $router)
     {
         $router->group([
-            'prefix' => 'staff',
+            'prefix' => 'staff__',
             'middleware' => 'staff'
         ], function ($router) {
             // Ticket

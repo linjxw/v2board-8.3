@@ -71,9 +71,9 @@ class OrderController extends Controller
     public function save(OrderSave $request)
     {
         $userService = new UserService();
-        if ($userService->isNotCompleteOrderByUserId($request->user['id'])) {
-            abort(500, __('You have an unpaid or pending order, please try again later or cancel it'));
-        }
+//        if ($userService->isNotCompleteOrderByUserId($request->user['id'])) {
+//            abort(500, __('You have an unpaid or pending order, please try again later or cancel it'));
+//        }
 
         $planService = new PlanService($request->input('plan_id'));
 
