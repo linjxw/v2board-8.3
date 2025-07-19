@@ -343,4 +343,43 @@ class UserController extends Controller
             'data' => $url
         ]);
     }
+
+    public function resetInAdvance(Request $request)
+    {
+        $user = User::find($request->user['id']);
+        if (!$user) {
+            abort(500, __('The user does not exist'));
+        }
+        $currentTime = time();
+        if ($user->expired_at <= $currentTime) {
+            abort(500, '未购买订阅或者已经过期！');
+        }
+        $expiredAt = $user->expired_at;
+        $canReset = ($expiredAt - $currentTime) / 86400;
+        if ($canReset < 30) {
+            abort(500, '订阅到期时间不足一个月，无法提前重置！');
+        }
+
+
+        $day = date('d', $expiredAt);
+        $today = date('d');
+        $lastDay = date('d', strtotime('last day of +0 months'));
+        if ((int)$day >= (int)$today && (int)$day >= (int)$lastDay) {
+            $remainDay = $lastDay - $today;
+        } else if ((int)$day >= (int)$today) {
+            $remainDay = $day - $today;
+        } else{
+            $remainDay = $lastDay - $today + $day;
+        }
+        $expiredAt = $expiredAt - ($remainDay * 86400);
+        $user->expired_at = $expiredAt;
+        $user->u = 0;
+        $user->d = 0;
+        if (!$user->save()) {
+            abort(500, '提前重置错误！');
+        }
+        return response([
+            'data' => true
+        ]);
+    }
 }
