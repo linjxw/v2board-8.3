@@ -352,12 +352,12 @@ class UserController extends Controller
         }
         $currentTime = time();
         if ($user->expired_at <= $currentTime) {
-            abort(500, '未购买订阅或者已经过期！');
+            abort(500, '未购买订阅或者已经过期！请先购买订阅！');
         }
         $expiredAt = $user->expired_at;
         $canReset = ($expiredAt - $currentTime) / 86400;
         if ($canReset < 30) {
-            abort(500, '订阅到期时间不足一个月，无法提前重置！');
+            abort(500, '订阅到期时间不足一个月，无法提前重置！请先续费！');
         }
 
 
