@@ -371,6 +371,9 @@ class UserController extends Controller
         } else{
             $remainDay = $lastDay - $today + $day;
         }
+        if ($remainDay == 0) {
+            abort(500, '刚开始一个周期，请晚些再重置！');
+        }
         $expiredAt = $expiredAt - ($remainDay * 86400);
         $user->expired_at = $expiredAt;
         $user->u = 0;
