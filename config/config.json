@@ -1,0 +1,35 @@
+{
+  "urlsBase64": [
+    "aHR0cHM6Ly9hcC5zd3l3bC5jb20=",
+    "aHR0cHM6Ly9tdDEuc3d5eXdsLmNvbQ=="
+  ],
+  "updates": {
+    "android": {
+      "versionCode": 2,
+      "versionName": "1.1.1",
+      "force": false,
+      "arm64Url": "https://你的OSS域名/app/salmon-android-arm64-1.0.1.apk",
+      "x64Url": "https://你的OSS域名/app/salmon-android-x64-1.0.1.apk",
+      "sha256": ""
+    },
+    "windows": {
+      "versionCode": 2,
+      "versionName": "1.0.1",
+      "force": false,
+      "url": "https://你的OSS域名/app/salmon-windows-x64-1.0.1.exe",
+      "sha256": ""
+    },
+    "macos": {
+      "versionCode": 2,
+      "versionName": "1.0.1",
+      "force": false,
+      "url": "https://你的OSS域名/app/salmon-macos-universal-1.0.1.dmg",
+      "sha256": ""
+    }
+  },
+  "releaseNotes": [
+    "优化登录稳定性",
+    "优化线路测速",
+    "升级首页连接动画"
+  ]
+}
